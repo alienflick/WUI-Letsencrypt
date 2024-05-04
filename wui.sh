@@ -204,7 +204,7 @@ sub_ca_path="$ssl_path/$sub_domain-CA.ca"
 sub_certificate_path="$ssl_path/$sub_domain-certeficateFile.cer"
 
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$sub_domain" \
+  --issue --force --standalone --server letsencrypt -d "$sub_domain" \
   --fullchain-file "$sub_fullchain_path" \
   --key-file "$sub_key_path"
 
@@ -215,7 +215,7 @@ sudo bash -c "cat $sub_fullchain_path $sub_key_path > $sub_mixed_ssl_path"
 fi
 
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$domain" \
+  --issue --force --standalone --server letsencrypt -d "$domain" \
   --fullchain-file "$fullchain_path" \
   --key-file "$key_path"
 
@@ -902,7 +902,7 @@ sudo systemctl stop apache2
 sudo x-ui stop
 
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$domain_sni" \
+  --issue --force --standalone --server letsencrypt -d "$domain_sni" \
   --fullchain-file "$ssl_path/$domain_sni-fullchain.pem" \
   --key-file "$ssl_path/$domain_sni.key"
 
@@ -1005,7 +1005,7 @@ sub_ca_path_auto="$ssl_path/$sub_domain_auto-CA.ca"
 sub_certificate_path_auto="$ssl_path/$sub_domain_auto-certeficateFile.cer"
 
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$sub_domain_auto" \
+  --issue --force --standalone --server letsencrypt -d "$sub_domain_auto" \
   --fullchain-file "$sub_fullchain_path_auto" \
   --key-file "$sub_key_path_auto"
 
@@ -1016,7 +1016,7 @@ sudo bash -c "cat $sub_fullchain_path_auto $sub_key_path_auto > $sub_mixed_ssl_p
 fi
 
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$domain_auto" \
+  --issue --force --standalone --server letsencrypt -d "$domain_auto" \
   --fullchain-file "$fullchain_path_auto" \
   --key-file "$key_path_auto"
 
@@ -1369,7 +1369,7 @@ ssl_path="/var/wui-certs"
 echo "OK , Now Please Enter your Domain/Subdomain "
 read -p "Domain/Subdomain ( e.g. a.example.com) ->> " domain_global
 ~/.acme.sh/acme.sh \
-  --issue --force --standalone -d "$domain_global" \
+  --issue --force --standalone --server letsencrypt -d "$domain_global" \
   --fullchain-file "$ssl_path/$domain_global-fullchain.pem" \
   --key-file "$ssl_path/$domain_global.key"
 
